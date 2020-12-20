@@ -1,0 +1,21 @@
+<div>
+    <h1>{{quiz.title}}</h1>
+    <h2>{{quiz.subtitle}}</h2>
+</div>
+<div>
+    Ваша оценка:
+    <div *ngIf="!quiz.unique_answers">
+        <app-answer *ngFor="let answer of answers"
+                    [answer]="answer"
+                    [subject]="subject"
+                    (checked)="check($event)"
+        ></app-answer>
+    </div>
+
+    <div>
+        <label for="comment">Комментарий к ответу:</label><br>
+        <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+    </div>
+
+    <button type="submit">Отправить ответ</button>
+</div>

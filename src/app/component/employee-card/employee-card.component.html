@@ -1,0 +1,4 @@
+<div>
+    {{employee.full_name}}
+    <a [routerLink]="'/position/' + employee.position_id">{{positionService.getPosition(employee.position_id).title}}</a>
+</div>

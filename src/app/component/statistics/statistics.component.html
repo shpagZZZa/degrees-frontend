@@ -1,0 +1,9 @@
+<div *ngFor="let quiz of quizzes">
+    <h4>{{quiz.title}}</h4>
+
+    <span *ngFor="let answer of quiz.possible_answers"
+          style="margin-right: 15px"
+    >{{answer.title}} - {{15 - answer.mark}}</span>
+</div>
+
+<button>Новый опрос</button>

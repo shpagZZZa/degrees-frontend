@@ -1,0 +1,11 @@
+<h1 *ngIf="group">Группа "{{group.title}}"</h1>
+<h2 *ngIf="parent">Родительская группа - {{parent.title}}</h2>
+
+<div>
+    Члены команды:
+    <app-employee-card *ngFor="let employee of employeeService.getEmployeesByGroup(group.id)"
+                        [employee]="employee"
+    ></app-employee-card>
+
+
+</div>

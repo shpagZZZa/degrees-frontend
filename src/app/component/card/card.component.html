@@ -1,0 +1,5 @@
+<div id="card">
+    <a [routerLink]="link" *ngIf="link">{{title}}</a>
+    <span *ngIf="!link">{{title}}</span>
+    {{subtitle}}
+</div>
