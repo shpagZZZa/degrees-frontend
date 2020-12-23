@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { QuizInterface } from '../data/interface/quiz.interface';
-import { QuizModel } from '../data/model/quiz.model';
+import { AnswerInterface, QuizModel } from '../data/model/quiz.model';
 import { EmployeeService } from './employee.service';
 
 @Injectable({
@@ -96,5 +96,30 @@ export class QuizService {
 
     public getQuiz(id: number): QuizModel {
         return this.quizzes.filter(q => q.id === id)[0];
+    }
+
+    public getDefaultAnswers(): AnswerInterface[] {
+        return [
+            {
+                mark: 0,
+                title: 'нет'
+            },
+            {
+                mark: 1,
+                title: 'скорее нет чем да'
+            },
+            {
+                mark: 2,
+                title: 'не знаю'
+            },
+            {
+                mark: 3,
+                title: 'скорее да чем нет'
+            },
+            {
+                mark: 4,
+                title: 'да'
+            }
+        ];
     }
 }

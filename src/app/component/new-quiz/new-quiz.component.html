@@ -1,0 +1,31 @@
+<div>
+    <label for="title">Название опроса</label>
+    <input type="text" id="title" name="title">
+</div>
+
+<div>
+    <label for="subtitle">Описание</label>
+    <textarea name="subtitle" id="subtitle" cols="30" rows="10"></textarea>
+</div>
+
+
+<div>
+    <h4>Варианты ответа</h4>
+
+    <button (click)="isDefaultAnswers = !isDefaultAnswers" *ngIf="isDefaultAnswers">Кастомные ответы</button>
+    <button (click)="isDefaultAnswers = !isDefaultAnswers" *ngIf="!isDefaultAnswers">Дефолтные ответы</button>
+
+    <app-answers-block *ngIf="isDefaultAnswers"
+                       [answers]="defaultAnswers"
+                       [canEdit]="false"
+    ></app-answers-block>
+
+    <app-answers-block *ngIf="!isDefaultAnswers"
+                       [answers]="customAnswers"
+                       [canEdit]="true"
+    ></app-answers-block>
+</div>
+
+<div>
+    <button (click)="submit()">Сохранить</button>
+</div>
