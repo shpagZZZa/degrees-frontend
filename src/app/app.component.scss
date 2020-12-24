@@ -9,21 +9,24 @@ body{
 }
 
 .navbar{
-    width: 1140px;
+    //width: 1140px;
     margin: 0 auto;
+  margin: 0 auto;
     .nav-item{
         display: grid;
         text-align: center;
         grid-gap: 20px;
-        width: 1140px;
+        //width: 1140px;
         background-color: #44ADD7;
-        grid-template-columns: repeat(2,1fr);
+      margin: 0 auto;
+        grid-template-columns: repeat(3,1fr);
         a{
             text-decoration: none;
             color: #D95A51;
             font-weight:800;
-            font-size: 100px;
+            font-size: 80px;
             transition: 0.4s all;
+          margin: 0 auto;
             &:hover{
                 background-color:rgb(52, 135, 188);
                 transform-style: preserve-3d;

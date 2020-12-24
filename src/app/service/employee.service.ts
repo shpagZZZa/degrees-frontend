@@ -23,13 +23,13 @@ export class EmployeeService {
         },
         {
             id: 3,
-            full_name: 'имя 3',
+            full_name: 'Анатолий',
             position_id: 3,
             group_id: 2
         },
         {
             id: 4,
-            full_name: 'имя 4',
+            full_name: 'Марина',
             position_id: 4,
             group_id: 2
         },

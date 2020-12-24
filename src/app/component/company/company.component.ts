@@ -30,4 +30,8 @@ export class CompanyComponent implements OnInit {
 
     ngOnInit(): void {
     }
+
+    getRandomInt(): number {
+        return Math.floor(Math.random() * 20);
+    }
 }

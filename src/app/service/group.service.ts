@@ -12,28 +12,28 @@ export class GroupService {
             company_id: 1,
             parent_id: null,
             head_id: 1,
-            title: 'разоработчики'
+            title: 'Разработчики'
         },
         {
             id: 2,
             company_id: 1,
             parent_id: 1,
             head_id: 2,
-            title: 'аналитиик'
+            title: 'Аналитики'
         },
         {
             id: 3,
             company_id: 1,
             parent_id: 1,
             head_id: 3,
-            title: 'дизайнеры'
+            title: 'Дизайнеры'
         },
         {
             id: 4,
             company_id: 1,
             parent_id: 2,
             head_id: 4,
-            title: 'прочая шелупонь'
+            title: 'Бухгалтерия'
         },
     ];
 

@@ -11,7 +11,7 @@ export class QuizService {
         {
             id: 1,
             employee_id: 1,
-            title: 'Опрос 1',
+            title: 'Анатолий хорошо анализирует?',
             subtitle: 'описание',
             unique_answers: false,
             possible_answers: [
@@ -41,7 +41,7 @@ export class QuizService {
         {
             id: 2,
             employee_id: 2,
-            title: 'Опрос 2',
+            title: 'Вы довольны руководством компании?',
             subtitle: 'описание',
             unique_answers: false,
             possible_answers: [
@@ -70,22 +70,18 @@ export class QuizService {
         {
             id: 3,
             employee_id: 3,
-            title: 'Опрос 3',
+            title: 'По Вашему мнению, кого стоит уволить?',
             subtitle: 'описание',
             unique_answers: true,
             possible_answers: [
                 {
                     mark: 0,
-                    title: 'да',
+                    title: 'Марину',
                 },
                 {
                     mark: 1,
-                    title: 'нет',
-                },
-                {
-                    mark: 2,
-                    title: 'нет',
-                },
+                    title: 'Игоря',
+                }
             ]
         }
     ];

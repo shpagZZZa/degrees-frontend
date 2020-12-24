@@ -3,5 +3,5 @@
 
     <span *ngFor="let answer of quiz.possible_answers"
           style="margin-right: 15px"
-    >{{answer.title}} - {{15 - answer.mark}}</span>
+    >{{answer.title}} - {{getRandomInt()}}</span>
 </div>

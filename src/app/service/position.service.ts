@@ -18,11 +18,11 @@ export class PositionService {
         },
         {
             id: 3,
-            title: 'фулстак',
+            title: 'Аналитик',
         },
         {
             id: 4,
-            title: 'верстак',
+            title: 'Младший аналитик',
         },
         {
             id: 5,

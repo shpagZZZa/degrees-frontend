@@ -18,6 +18,9 @@ export class StatisticsComponent implements OnInit {
       this.quizzes = quizService.getQuizzes(1);
     }
 
+    getRandomInt(): number {
+        return Math.floor(Math.random() * 20);
+    }
     ngOnInit(): void {
     }
 }
