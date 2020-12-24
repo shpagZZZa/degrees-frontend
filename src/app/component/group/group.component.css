@@ -1,0 +1,28 @@
+.app-group {
+  width: 500px;
+  background-color: green;
+}
+
+h1 {
+  margin: 0 auto;
+  color: #D95A51;
+  text-align: center;
+}
+
+h2 {
+  margin: 0 auto;
+  color: #D95A51;
+  text-align: center;
+}
+
+#group {
+  width: 1140px;
+  margin: 0 auto;
+}
+#group app-employee-card {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  font-size: 30px;
+}
+
+/*# sourceMappingURL=group.component.css.map */

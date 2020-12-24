@@ -1,0 +1,18 @@
+#wrap {
+  height: 100vh;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+#wrap h1 {
+  text-align: center;
+  font-weight: 600;
+  color: #D95A51;
+}
+#wrap h4 {
+  width: 1140px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #D95A51;
+}
+
+/*# sourceMappingURL=company.component.css.map */

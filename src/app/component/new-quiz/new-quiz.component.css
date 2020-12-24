@@ -1,0 +1,63 @@
+#titled {
+  max-width: 1140px;
+  margin: 0 auto;
+  height: 100vh;
+  padding: 2rem;
+  display: block;
+  background-color: #44ADD7;
+  text-align: center;
+  color: black;
+}
+#titled label {
+  font-size: 60px;
+  font-weight: 600;
+}
+#titled input[type=text] {
+  width: 100%;
+  border-radius: 5px;
+  transition: 0.2s all;
+  outline: none;
+  border: none;
+}
+#titled input[type=text]:hover {
+  transform: scale(1.02);
+}
+#titled textarea {
+  width: 100%;
+  border-radius: 5px;
+  transition: 0.2s all;
+  outline: none;
+  border: none;
+}
+#titled textarea:hover {
+  transform: scale(1.02);
+}
+#titled #answer_block {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  font-size: 20px;
+  padding: 20px;
+  transition: 0.15s all;
+  text-transform: uppercase;
+  color: white;
+}
+#titled #answer_block button {
+  width: 400px;
+  background-color: #44ADD7;
+  margin-top: 20px;
+  border: solid 4px white;
+  color: white;
+  letter-spacing: 0.3em;
+  transition: 0.25s all;
+}
+#titled #answer_block button:hover {
+  transform: scale(1.1);
+  background-color: #3487bc;
+}
+#titled app-answers-block .customAnswers {
+  width: 100%;
+  outline: none;
+}
+
+/*# sourceMappingURL=new-quiz.component.css.map */

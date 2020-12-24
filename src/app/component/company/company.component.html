@@ -1,11 +1,15 @@
-<h1>{{company.title}}</h1>
+<div id="wrap">
+    <h1>{{company.title}}</h1>
+    <br>
+    <hr>
 
-<h4>Команды</h4>
-<div *ngFor="let group of groups">
-    <app-group-card [group]="group"></app-group-card>
+    <h4>Команды</h4>
+        <div *ngFor="let group of groups">
+            <app-group-card [group]="group"></app-group-card>
+        </div>
+
+    <h4>Опросы</h4>
+        <app-quiz-card *ngFor="let quiz of quizzes"
+                       [quiz]="quiz"
+        ></app-quiz-card>
 </div>
-
-<h4>Опросы</h4>
-<app-quiz-card *ngFor="let quiz of quizzes"
-               [quiz]="quiz"
-></app-quiz-card>

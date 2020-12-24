@@ -1,21 +1,25 @@
-<div>
-    <h1>{{quiz.title}}</h1>
-    <h2>{{quiz.subtitle}}</h2>
-</div>
-<div>
-    Ваша оценка:
-    <div *ngIf="!quiz.unique_answers">
-        <app-answer *ngFor="let answer of answers"
-                    [answer]="answer"
-                    [subject]="subject"
-                    (checked)="check($event)"
-        ></app-answer>
+<div class="wrap">
+    <div id="quiz" >
+        <h1>{{quiz.title}}</h1>
+        <h2>{{quiz.subtitle}}</h2>
     </div>
+        <div *ngIf="!quiz.unique_answers" id="answers">
+            <h3>Ваша оценка:</h3>
+            <div id="answers_type">
+            <app-answer *ngFor="let answer of answers"
+                        [answer]="answer"
+                        [subject]="subject"
+                        (checked)="check($event)"
+            ></app-answer>
+                </div>
 
-    <div>
-        <label for="comment">Комментарий к ответу:</label><br>
-        <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
-    </div>
+        </div>
 
-    <button type="submit">Отправить ответ</button>
+        <div id="commentary">
+            <label for="comment">Напишите Пару слов</label><br>
+            <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+            <button  type="submit">Отправить ответ</button>
+        </div>
+
+
 </div>

@@ -1,0 +1,26 @@
+#card {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 1140px;
+  margin: 0 auto;
+  background-color: #44ADD7;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 500;
+  color: #f5f2eb;
+  font-family: Langar;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+#card a {
+  text-decoration: none;
+  color: #f5f2eb;
+  transition: 0.2s all;
+}
+#card a:hover {
+  transform: scale(0.9);
+  background-color: #1C8CBE;
+}
+
+/*# sourceMappingURL=card.component.css.map */

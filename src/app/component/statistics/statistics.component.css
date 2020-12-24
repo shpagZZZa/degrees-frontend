@@ -1,0 +1,17 @@
+#gridz {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  max-width: 1140px;
+  margin: 0 auto;
+  line-height: 2em;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 20px;
+  transition: 0.5s all;
+}
+#gridz:hover {
+  box-shadow: 2px 2px 3px #c6d9ec;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=statistics.component.css.map */

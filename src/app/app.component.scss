@@ -1,0 +1,36 @@
+body{
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.navbar{
+    width: 1140px;
+    margin: 0 auto;
+    .nav-item{
+        display: grid;
+        text-align: center;
+        grid-gap: 20px;
+        width: 1140px;
+        background-color: #44ADD7;
+        grid-template-columns: repeat(2,1fr);
+        a{
+            text-decoration: none;
+            color: #D95A51;
+            font-weight:800;
+            font-size: 100px;
+            transition: 0.4s all;
+            &:hover{
+                background-color:rgb(52, 135, 188);
+                transform-style: preserve-3d;
+                backface-visibility: visible;
+                transform: translate3d(20px,20px,20px);
+            }
+
+        }
+    }
+}
