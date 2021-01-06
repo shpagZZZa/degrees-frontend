@@ -1,4 +1,4 @@
 <div id="gey">
-    {{employee.full_name}} -
-    <a [routerLink]="'/position/' + employee.position_id">{{positionService.getPosition(employee.position_id).title}}</a>
+    <a [routerLink]="'/employee/' + employee.id">{{employee.fullName}}</a> -
+    <a>{{employee.position.title}}</a>
 </div>

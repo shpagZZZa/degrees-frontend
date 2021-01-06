@@ -3,7 +3,12 @@ import { GroupInterface } from './group.interface';
 
 export interface EmployeeInterface {
     id: number;
-    full_name: string;
+    fullName: string;
     position: PositionInterface;
-    group: GroupInterface;
+    group: SimpleGroupInterface;
+}
+
+export interface SimpleGroupInterface {
+    id: number;
+    title: string;
 }

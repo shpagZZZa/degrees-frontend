@@ -1,0 +1,28 @@
+<app-loading *ngIf="loading"></app-loading>
+
+<div *ngIf="!loading">
+    <div class="wrap">
+        <div id="quiz" >
+            <h1>{{quiz.title}}</h1>
+            <h2>{{quiz.subtitle}}</h2>
+            <a><h3 [routerLink]="'/employee/' + quiz.employee.id">Сотрудник - {{quiz.employee.fullName}}</h3></a>
+        </div>
+
+        <h3>Ваша оценка:</h3>
+        <div id="answers_type">
+            <app-answer *ngFor="let answer of quiz.answers"
+                        [answer]="answer"
+                        [subject]="subject"
+                        (checked)="check($event)"
+            ></app-answer>
+        </div>
+
+
+        <div id="commentary">
+            <label for="comment">Напишите Пару слов</label><br>
+            <textarea name="comment" id="comment" cols="30" rows="10" [(ngModel)]="comment"></textarea>
+            <button (click)="submit()" *ngIf="answer">Отправить ответ</button>
+        </div>
+
+    </div>
+</div>

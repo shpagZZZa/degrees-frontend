@@ -1,69 +1,33 @@
 import { Injectable } from '@angular/core';
 import { EmployeeInterface } from '../data/interface/employee.interface';
-import { EmployeeModel } from '../data/model/employee.model';
-import { PositionService } from './position.service';
-import { GroupService } from './group.service';
+import { BackendService } from './backend.service';
+import { Observable } from 'rxjs';
+import { QuizInterface } from '../data/interface/quiz.interface';
+
+export interface NewEmployeeInterface {
+    fullName: string;
+    positionId: number;
+    groupId: number;
+}
 
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeeService {
-    private employees: EmployeeModel[] = [
-        {
-            id: 1,
-            full_name: 'имя 1',
-            position_id: 1,
-            group_id: 1
-        },
-        {
-            id: 2,
-            full_name: 'имя 2',
-            position_id: 2,
-            group_id: 1
-        },
-        {
-            id: 3,
-            full_name: 'Анатолий',
-            position_id: 3,
-            group_id: 2
-        },
-        {
-            id: 4,
-            full_name: 'Марина',
-            position_id: 4,
-            group_id: 2
-        },
-        {
-            id: 5,
-            full_name: 'имя 5',
-            position_id: 5,
-            group_id: 3
-        },
-        {
-            id: 6,
-            full_name: 'имя 6',
-            position_id: 6,
-            group_id: 3
-        },
-        {
-            id: 7,
-            full_name: 'имя 7',
-            position_id: 7,
-            group_id: 4
-        },
-        {
-            id: 8,
-            full_name: 'имя 8',
-            position_id: 8,
-            group_id: 4
-        }
-    ];
+export class EmployeeService extends BackendService {
 
-    public getEmployee(id: number): EmployeeModel {
-        return  this.employees.filter(e => e.id === id)[0];
+    public getEmployee(id: number): Observable<EmployeeInterface> {
+        return this.http.get<EmployeeInterface>(this.backendUrl + '/api/employee/' + id);
     }
 
-    public getEmployeesByGroup(id: number): EmployeeModel[] {
-        return this.employees.filter(e => e.group_id === id);
+    public getQuizzes(id: number): Observable<QuizInterface[]> {
+        return this.http.get<QuizInterface[]>(this.backendUrl + '/api/employee/' + id + '/quizzes');
+    }
+
+    public save(emp: NewEmployeeInterface): Observable<EmployeeInterface> {
+        return this.http.post<EmployeeInterface>(this.backendUrl + '/api/employee/', emp);
+    }
+
+    public getAll(): Observable<EmployeeInterface[]> {
+        return this.http.get<EmployeeInterface[]>(this.backendUrl + '/api/employee/list');
     }
 }

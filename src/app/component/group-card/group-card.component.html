@@ -1,5 +1,5 @@
 
 <app-card [title]="group.title"
-          [subtitle]="'Членов команды: ' + employeeService.getEmployeesByGroup(group.id).length"
+          [subtitle]="'Членов команды: ' + group.employees.length"
           [link]="'/group/' + group.id"
 ></app-card>

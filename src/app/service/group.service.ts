@@ -1,51 +1,14 @@
 import { Injectable } from '@angular/core';
 import { GroupInterface } from '../data/interface/group.interface';
-import { GroupModel } from '../data/model/group.model';
+import { Observable } from 'rxjs';
+import { BackendService } from './backend.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GroupService {
-    private groups: GroupModel[] = [
-        {
-            id: 1,
-            company_id: 1,
-            parent_id: null,
-            head_id: 1,
-            title: 'Разработчики'
-        },
-        {
-            id: 2,
-            company_id: 1,
-            parent_id: 1,
-            head_id: 2,
-            title: 'Аналитики'
-        },
-        {
-            id: 3,
-            company_id: 1,
-            parent_id: 1,
-            head_id: 3,
-            title: 'Дизайнеры'
-        },
-        {
-            id: 4,
-            company_id: 1,
-            parent_id: 2,
-            head_id: 4,
-            title: 'Бухгалтерия'
-        },
-    ];
+export class GroupService extends BackendService{
 
-    public getGroup(id: number): GroupModel {
-        return this.groups.filter(g => g.id === id)[0];
-    }
-
-    public getGroups(companyId: number): GroupModel[] {
-        return this.groups.filter(g => g.company_id === companyId);
-    }
-
-    public getGroupParent(group: GroupModel): GroupModel | null {
-        return this.groups.filter(g => g.id === group.parent_id)[0] ?? null;
+    public getGroup(id: number): Observable<GroupInterface> {
+        return this.http.get<GroupInterface>(this.backendUrl + '/api/group/' + id);
     }
 }

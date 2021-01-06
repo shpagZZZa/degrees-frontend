@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AnswerInterface } from '../../data/model/quiz.model';
 import { QuizService } from '../../service/quiz.service';
+import { AnswerInterface } from '../../data/interface/quiz.interface';
+import { EmployeeInterface } from '../../data/interface/employee.interface';
+import { EmployeeService } from '../../service/employee.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-quiz',
@@ -9,28 +12,62 @@ import { QuizService } from '../../service/quiz.service';
 })
 export class NewQuizComponent {
 
-    defaultAnswers: AnswerInterface[];
+    title = '';
+    subtitle = '';
+    employeeId!: number;
+
+    defaultAnswers!: AnswerInterface[];
     customAnswers: AnswerInterface[] = [
         {
-            mark: 0,
+            id: 0,
             title: 'Нет'
         },
         {
-            mark: 1,
+            id: 1,
             title: 'Да'
         }
     ];
     isDefaultAnswers = true;
+    allEmployees: EmployeeInterface[] = [];
 
     constructor(
-        private quizService: QuizService
+        private quizService: QuizService,
+        private employeeService: EmployeeService,
+        private router: Router
     ) {
-        this.defaultAnswers = quizService.getDefaultAnswers();
+        quizService.getDefaultAnswers().subscribe(
+            answers => {
+                this.defaultAnswers = answers;
+            }
+        );
+        employeeService.getAll().subscribe(
+            emps => {
+                this.allEmployees = emps;
+            }
+        );
     }
 
     submit(): void {
-        const answers = this.isDefaultAnswers ? this.defaultAnswers : this.customAnswers;
-        console.log(answers);
+        const data = this.isDefaultAnswers ? {
+                title: this.title,
+                subtitle: this.subtitle,
+                employeeId: this.employeeId,
+                defaultAnswers: true
+            } : {
+            title: this.title,
+            subtitle: this.subtitle,
+            employeeId: this.employeeId,
+            answers: this.customAnswers,
+            defaultAnswers: false
+        };
+        this.quizService.newQuiz(data).subscribe(
+            quiz => {
+                this.router.navigate(['/quiz/' + quiz.id]);
+            }
+        );
     }
 
+    deleteLast(): void {
+        this.customAnswers.pop();
+    }
 }

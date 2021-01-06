@@ -10,7 +10,7 @@ import { GroupModel } from '../../data/model/group.model';
 })
 export class GroupCardComponent implements OnInit {
 
-    @Input() group!: GroupModel;
+    @Input() group!: GroupInterface;
 
     constructor(public employeeService: EmployeeService) { }
 

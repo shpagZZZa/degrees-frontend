@@ -1,121 +1,41 @@
 import { Injectable } from '@angular/core';
-import { QuizInterface } from '../data/interface/quiz.interface';
-import { AnswerInterface, QuizModel } from '../data/model/quiz.model';
-import { EmployeeService } from './employee.service';
+import { AnswerInterface, FeedbackInterface, NewFeedbackInterface, QuizInterface } from '../data/interface/quiz.interface';
+import { Observable } from 'rxjs';
+import { BackendService, SuccessMessageInterface } from './backend.service';
+
+export interface NewQuizInterface {
+    title: string;
+    subtitle: string;
+    employeeId: number;
+    defaultAnswers: boolean;
+    answers?: AnswerInterface[];
+}
 
 @Injectable({
   providedIn: 'root'
 })
-export class QuizService {
-    private quizzes: QuizModel[] = [
-        {
-            id: 1,
-            employee_id: 1,
-            title: 'Анатолий хорошо анализирует?',
-            subtitle: 'описание',
-            unique_answers: false,
-            possible_answers: [
-                {
-                    mark: 0,
-                    title: 'нет'
-                },
-                {
-                    mark: 1,
-                    title: 'скорее нет чем да'
-                },
-                {
-                    mark: 2,
-                    title: 'не знаю'
-                },
-                {
-                    mark: 3,
-                    title: 'скорее да чем нет'
-                },
-                {
-                    mark: 4,
-                    title: 'да'
-                }
-            ]
-
-        },
-        {
-            id: 2,
-            employee_id: 2,
-            title: 'Вы довольны руководством компании?',
-            subtitle: 'описание',
-            unique_answers: false,
-            possible_answers: [
-                {
-                    mark: 0,
-                    title: 'нет'
-                },
-                {
-                    mark: 1,
-                    title: 'скорее нет чем да'
-                },
-                {
-                    mark: 2,
-                    title: 'не знаю'
-                },
-                {
-                    mark: 3,
-                    title: 'скорее да чем нет'
-                },
-                {
-                    mark: 4,
-                    title: 'да'
-                }
-            ]
-        },
-        {
-            id: 3,
-            employee_id: 3,
-            title: 'По Вашему мнению, кого стоит уволить?',
-            subtitle: 'описание',
-            unique_answers: true,
-            possible_answers: [
-                {
-                    mark: 0,
-                    title: 'Марину',
-                },
-                {
-                    mark: 1,
-                    title: 'Игоря',
-                }
-            ]
-        }
-    ];
-
-    public getQuizzes(companyId: number): QuizModel[] {
-        return this.quizzes;
+export class QuizService extends BackendService {
+    public getQuiz(id: number): Observable<QuizInterface> {
+        return this.http.get<QuizInterface>(this.backendUrl + '/api/quiz/' + id);
     }
 
-    public getQuiz(id: number): QuizModel {
-        return this.quizzes.filter(q => q.id === id)[0];
+    public leaveFeedback(quizId: number, feedback: NewFeedbackInterface): Observable<FeedbackInterface> {
+        return this.http.post<FeedbackInterface>(this.backendUrl + '/api/quiz/' + quizId, {
+            feedback
+        });
     }
 
-    public getDefaultAnswers(): AnswerInterface[] {
-        return [
-            {
-                mark: 0,
-                title: 'нет'
-            },
-            {
-                mark: 1,
-                title: 'скорее нет чем да'
-            },
-            {
-                mark: 2,
-                title: 'не знаю'
-            },
-            {
-                mark: 3,
-                title: 'скорее да чем нет'
-            },
-            {
-                mark: 4,
-                title: 'да'
-            }
-        ];
+    public isAnswered(quizId: number): Observable<SuccessMessageInterface> {
+        return this.http.get<SuccessMessageInterface>(this.backendUrl + '/api/quiz/' + quizId + '/check-answered', {
+            headers: this.getAuthHeaders()
+        });
+    }
+
+    public getDefaultAnswers(): Observable<AnswerInterface[]> {
+        return this.http.get<AnswerInterface[]>(this.backendUrl + '/api/answer/default');
+    }
+
+    public newQuiz(data: NewQuizInterface): Observable<QuizInterface> {
+        return this.http.post<QuizInterface>(this.backendUrl + '/api/quiz', data);
     }
 }

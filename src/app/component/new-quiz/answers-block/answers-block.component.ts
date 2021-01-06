@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { AnswerInterface } from '../../../data/model/quiz.model';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { AnswerInterface } from '../../../data/interface/quiz.interface';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-answers-block',
@@ -10,6 +11,7 @@ export class AnswersBlockComponent implements OnInit {
 
     @Input() answers!: AnswerInterface[];
     @Input() canEdit!: boolean;
+    @Output() delete = new EventEmitter();
 
     constructor() { }
 
@@ -19,7 +21,7 @@ export class AnswersBlockComponent implements OnInit {
     public addAnswer(): void {
         this.answers.push(
             {
-                mark: this.answers.length,
+                id: this.answers.length,
                 title: ''
             }
         );

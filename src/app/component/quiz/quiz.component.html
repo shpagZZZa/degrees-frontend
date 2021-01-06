@@ -1,25 +1,36 @@
-<div class="wrap">
-    <div id="quiz" >
-        <h1>{{quiz.title}}</h1>
-        <h2>{{quiz.subtitle}}</h2>
-    </div>
-        <div *ngIf="!quiz.unique_answers" id="answers">
-            <h3>Ваша оценка:</h3>
-            <div id="answers_type">
-            <app-answer *ngFor="let answer of answers"
-                        [answer]="answer"
-                        [subject]="subject"
-                        (checked)="check($event)"
-            ></app-answer>
+<app-loading *ngIf="loading"></app-loading>
+
+<div *ngIf="!loading">
+    <div class="wrap">
+
+        <div id="quiz" >
+            <h1>{{quiz.title}}</h1>
+            <h2>{{quiz.subtitle}}</h2>
+            <a><h3 [routerLink]="'/employee/' + quiz.employee.id">Сотрудник - {{quiz.employee.fullName}}</h3></a>
+        </div>
+
+        <button class="btn-primary" [routerLink]="'/quiz/' + quiz.id + '/feedback'"
+                *ngIf="!answered"
+        >Оставить ответ</button>
+
+        <hr>
+
+        <div *ngIf="!quiz.feedbacks || !quiz.feedbacks.length">
+            Никто не оставил ответов...
+        </div>
+
+        <div *ngIf="quiz.feedbacks && quiz.feedbacks.length">
+            <h2>Ответы</h2>
+            <div *ngFor="let feedback of quiz.feedbacks">
+                <hr>
+                <h4>Оценка - {{ feedback.answer.title }}</h4>
+                <span *ngIf="feedback.comment">Комментарий - {{feedback.comment}}</span>
+
+                <div>
+                    <span class="alert-danger" *ngIf="user && feedback.author.id === user.id">Ваш ответ!</span>
                 </div>
-
+            </div>
         </div>
 
-        <div id="commentary">
-            <label for="comment">Напишите Пару слов</label><br>
-            <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
-            <button  type="submit">Отправить ответ</button>
-        </div>
-
-
+    </div>
 </div>

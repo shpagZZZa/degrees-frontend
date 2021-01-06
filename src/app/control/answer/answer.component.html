@@ -1,4 +1,4 @@
 <div [style]="isChecked ? 'background-color:#90EE90;' : ''">
-    <label [for]="answer.mark">{{answer.title}}</label>
-    <input type="radio" [id]="answer.mark" name="answer" (change)="check()" hidden>
+    <label [for]="answer.title">{{answer.title}}</label>
+    <input type="radio" [id]="answer.title" name="answer" (change)="check()" hidden>
 </div>

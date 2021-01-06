@@ -1,7 +1,13 @@
-<div id="gridz" *ngFor="let quiz of quizzes">
-    <h4>{{quiz.title}}</h4>
+<app-loading *ngIf="loading"></app-loading>
+<div *ngIf="!loading">
+    <div *ngFor="let group of company.groups">
+        <h3>{{group.title}}</h3>
+        <div id="gridz" *ngFor="let quiz of getQuizzesByGroup(group)" [routerLink]="'/quiz/' + quiz.id">
+            <h4>{{quiz.title}}</h4>
 
-    <span *ngFor="let answer of quiz.possible_answers"
-          style="margin-right: 15px"
-    >{{answer.title}} - {{getRandomInt()}}</span>
+            <span *ngFor="let answer of quiz.answers"
+                  style="margin-right: 15px"
+            >{{answer.title}} - {{getFeedbacksCount(quiz, answer)}}</span>
+        </div>
+    </div>
 </div>

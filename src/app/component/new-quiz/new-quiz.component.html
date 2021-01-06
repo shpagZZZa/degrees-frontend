@@ -2,33 +2,41 @@
     <hr>
     <br>
     <label for="title">Название опроса</label><br>
-    <input type="text" id="title" name="title">
+    <input type="text" id="title" name="title" [(ngModel)]="title">
 
-<div>
-    <label for="subtitle">Описание</label><br>
-    <textarea name="subtitle" id="subtitle" cols="30" rows="10"></textarea>
-</div>
-
-
-<div id="answer_block">
-    <div id="vars">
-    <h4>Варианты ответа</h4>
-
-    <button (click)="isDefaultAnswers = !isDefaultAnswers" *ngIf="isDefaultAnswers">Кастомные ответы</button>
-    <button (click)="isDefaultAnswers = !isDefaultAnswers" *ngIf="!isDefaultAnswers">Дефолтные ответы</button>
-        <div>
-            <button (click)="submit()">Сохранить</button>
-        </div>
+    <div>
+        <label for="emp">Сотрудник</label>
+        <select id="emp" class="form-control" [(ngModel)]="employeeId">
+            <option *ngFor="let emp of allEmployees" [value]="emp.id">{{emp.fullName}} - {{emp.position.title}}</option>
+        </select>
     </div>
-    <app-answers-block *ngIf="isDefaultAnswers"
-                       [answers]="defaultAnswers"
-                       [canEdit]="false"
-    ></app-answers-block>
 
-    <app-answers-block *ngIf="!isDefaultAnswers"
-                       [answers]="customAnswers"
-                       [canEdit]="true"
-    ></app-answers-block>
-</div>
+    <div>
+        <label for="subtitle">Описание</label><br>
+        <textarea name="subtitle" id="subtitle" cols="30" rows="10" [(ngModel)]="subtitle"></textarea>
+    </div>
+
+
+    <div id="answer_block">
+        <div id="vars">
+        <h4>Варианты ответа</h4>
+
+        <button (click)="isDefaultAnswers = !isDefaultAnswers" *ngIf="isDefaultAnswers">Кастомные ответы</button>
+        <button (click)="isDefaultAnswers = !isDefaultAnswers" *ngIf="!isDefaultAnswers">Дефолтные ответы</button>
+            <div>
+                <button (click)="submit()">Сохранить</button>
+            </div>
+        </div>
+        <app-answers-block *ngIf="isDefaultAnswers"
+                           [answers]="defaultAnswers"
+                           [canEdit]="false"
+        ></app-answers-block>
+
+        <app-answers-block *ngIf="!isDefaultAnswers"
+                           [answers]="customAnswers"
+                           [canEdit]="true"
+                           (delete)="deleteLast()"
+        ></app-answers-block>
+    </div>
 
 </div>

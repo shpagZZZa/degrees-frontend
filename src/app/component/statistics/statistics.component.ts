@@ -1,26 +1,54 @@
 import { Component, OnInit } from '@angular/core';
-import { QuizModel } from '../../data/model/quiz.model';
-import { QuizService } from '../../service/quiz.service';
-import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
-import { QuizCardComponent } from '../quiz-card/quiz-card.component';
-import { NewQuizModalComponent } from '../new-quiz-modal/new-quiz-modal.component';
+import { AnswerInterface, QuizInterface } from '../../data/interface/quiz.interface';
+import { CompanyService } from '../../service/company.service';
+import { CompanyInterface } from '../../data/interface/company.interface';
+import { GroupInterface } from '../../data/interface/group.interface';
 
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.scss']
 })
-export class StatisticsComponent implements OnInit {
+export class StatisticsComponent {
 
-    quizzes: QuizModel[];
+    company!: CompanyInterface;
+    quizzes!: QuizInterface[];
+    loading = true;
 
-    constructor(quizService: QuizService, private matDialog: MatDialog) {
-      this.quizzes = quizService.getQuizzes(1);
+    constructor(private companyService: CompanyService) {
+        const id = 1;
+        companyService.getCompany(id).subscribe(
+            comp => {
+                this.company = comp;
+            }
+        );
+        companyService.getQuizzes(id).subscribe(
+            quizzes => {
+                this.quizzes = quizzes;
+                this.loading = false;
+            }
+        );
     }
 
-    getRandomInt(): number {
-        return Math.floor(Math.random() * 20);
+    getQuizzesByGroup(gr: GroupInterface): QuizInterface[] {
+        const res: QuizInterface[] = [];
+        this.quizzes.forEach(q => {
+            if (q.employee.group.id === gr.id) {
+                res.push(q);
+            }
+        });
+        return res;
     }
-    ngOnInit(): void {
+
+    getFeedbacksCount(quiz: QuizInterface, answer: AnswerInterface): number {
+        let res = 0;
+        quiz.feedbacks.forEach(
+            f => {
+                if (f.answer.id === answer.id) {
+                    res++;
+                }
+            }
+        );
+        return res;
     }
 }

@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { EmployeeInterface } from '../../data/interface/employee.interface';
-import { EmployeeModel } from '../../data/model/employee.model';
-import { EmployeeService } from '../../service/employee.service';
 import { PositionService } from '../../service/position.service';
+import { EmployeeInterface } from '../../data/interface/employee.interface';
 
 @Component({
   selector: 'app-employee-card',
@@ -10,13 +8,8 @@ import { PositionService } from '../../service/position.service';
   styleUrls: ['./employee-card.component.scss']
 })
 export class EmployeeCardComponent implements OnInit {
-
-    @Input() employee!: EmployeeModel;
-
-    constructor(public positionService: PositionService) {
-    }
+    @Input() employee!: EmployeeInterface;
 
     ngOnInit(): void {
     }
-
 }

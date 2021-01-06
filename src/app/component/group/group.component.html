@@ -1,9 +1,51 @@
-<h1 *ngIf="group">Группа "{{group.title}}"</h1>
-<!--<h2 *ngIf="parent">Родительская группа - {{parent.title}}</h2>-->
+<app-loading *ngIf="loading">
 
-<div id="group">
-    <p>Члены команды:</p>
-    <app-employee-card *ngFor="let employee of employeeService.getEmployeesByGroup(group.id)"
-                        style="background: #44ADD7;color: white" [employee]="employee"
-    ></app-employee-card>
+</app-loading>
+
+<div *ngIf="!loading">
+    <h1>Группа "{{group.title}}"</h1>
+
+    <h3 [routerLink]="'/employee/' + group.head.id">Глава команды - {{group.head.fullName}}</h3>
+    <div id="group">
+        <p>Члены команды:</p>
+        <app-employee-card *ngFor="let employee of group.employees"
+                           style="background: #44ADD7;color: white" [employee]="employee"
+        ></app-employee-card>
+    </div>
+
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Новый сотрудник группы {{group.title}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+                    <label for="name">ФИО</label>
+                    <div class="input-group">
+                        <input id="name" class="form-control" name="dp" type="text" [(ngModel)]="fullName">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="position">Должность</label>
+                    <div class="input-group">
+                        <select id="position" class="form-control" name="dp" [(ngModel)]="positionId">
+                            <option *ngFor="let position of positions" [value]="position.id">{{position.title}}</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="submit()"
+                    *ngIf="positionId && fullName"
+            >Сохранить</button>
+        </div>
+    </ng-template>
+
+    <button class="btn btn-lg btn-outline-primary" (click)="openModal(content)">Добавить сотрудника</button>
+<!--    <button class="btn-secondary" (click)="subjectOpen.next(openModal)"  data-target="modal">Добавить сотрудника</button>-->
 </div>

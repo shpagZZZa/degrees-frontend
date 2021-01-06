@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { AnswerInterface } from '../../data/model/quiz.model';
 import { Subject } from 'rxjs';
 import { EventEmitter } from '@angular/core';
+import { AnswerInterface } from '../../data/interface/quiz.interface';
 
 @Component({
   selector: 'app-answer',
@@ -16,12 +16,12 @@ export class AnswerComponent implements OnInit {
 
     check(): void {
         this.isChecked = !this.checked;
-        this.checked.emit(this.answer.mark);
+        this.checked.emit(this.answer.id);
     }
 
     ngOnInit(): void {
         this.subject.subscribe(mark => {
-            this.isChecked = mark === this.answer.mark;
+            this.isChecked = mark === this.answer.id;
         });
     }
 }

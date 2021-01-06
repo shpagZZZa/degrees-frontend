@@ -1,5 +1,5 @@
 
 <app-card [title]="quiz.title"
-          [subtitle]="'Проголосовавших: 4'"
+          [subtitle]="'Проголосовавших: ' + quiz.feedbacks.length"
           [link]="'/quiz/' + quiz.id"
 ></app-card>

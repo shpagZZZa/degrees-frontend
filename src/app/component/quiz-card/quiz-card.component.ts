@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { QuizModel } from '../../data/model/quiz.model';
+import { QuizInterface } from '../../data/interface/quiz.interface';
 
 @Component({
   selector: 'app-quiz-card',
@@ -8,7 +8,7 @@ import { QuizModel } from '../../data/model/quiz.model';
 })
 export class QuizCardComponent implements OnInit {
 
-    @Input() quiz!: QuizModel;
+    @Input() quiz!: QuizInterface;
     constructor() { }
 
     ngOnInit(): void {

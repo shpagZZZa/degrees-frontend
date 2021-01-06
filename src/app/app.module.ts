@@ -13,11 +13,16 @@ import { AnswerComponent } from './control/answer/answer.component';
 import { StatisticsComponent } from './component/statistics/statistics.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
-import { NewQuizModalComponent } from './component/new-quiz-modal/new-quiz-modal.component';
 import { CardComponent } from './component/card/card.component';
 import { NewQuizComponent } from './component/new-quiz/new-quiz.component';
 import { AnswersBlockComponent } from './component/new-quiz/answers-block/answers-block.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { LoadingComponent } from './component/loading/loading.component';
+import { NewFeedbackComponent } from './component/new-feedback/new-feedback.component';
+import { EmployeeComponent } from './component/employee/employee.component';
+import { ModalComponent } from './component/modal/modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     declarations: [
@@ -30,17 +35,23 @@ import { FormsModule } from '@angular/forms';
         QuizCardComponent,
         AnswerComponent,
         StatisticsComponent,
-        NewQuizModalComponent,
         CardComponent,
         NewQuizComponent,
-        AnswersBlockComponent
+        AnswersBlockComponent,
+        LoadingComponent,
+        NewFeedbackComponent,
+        EmployeeComponent,
+        ModalComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         MatDialogModule,
-        FormsModule
+        FormsModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        NgbModule
     ],
     providers: [],
     bootstrap: [AppComponent]

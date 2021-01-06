@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QuizService } from '../../service/quiz.service';
-import { AnswerInterface, QuizModel } from '../../data/model/quiz.model';
 import { Subject } from 'rxjs';
+import { QuizInterface } from '../../data/interface/quiz.interface';
+import { EmployeeInterface } from '../../data/interface/employee.interface';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-quiz',
@@ -11,17 +13,32 @@ import { Subject } from 'rxjs';
 })
 export class QuizComponent {
 
-    quiz: QuizModel;
-    answers: { mark: number; title: string }[];
-    subject: Subject<number> = new Subject<number>();
+    user!: EmployeeInterface;
+    loading = true;
+    quiz!: QuizInterface;
+    answered = true;
 
-    constructor(route: ActivatedRoute, quizService: QuizService) {
+    constructor(
+        route: ActivatedRoute,
+        quizService: QuizService,
+        auth: AuthService
+    ) {
         const id = parseInt(route.snapshot.paramMap.get('id') as string, 10);
-        this.quiz = quizService.getQuiz(id);
-        this.answers = this.quiz.possible_answers;
-    }
-
-    public check(mark: number): void {
-        this.subject.next(mark);
+        quizService.getQuiz(id).subscribe(
+            quiz => {
+                this.quiz = quiz;
+                this.loading = false;
+            }
+        );
+        auth.getUser().subscribe(
+            user => {
+                this.user = user;
+            }
+        );
+        quizService.isAnswered(id).subscribe(
+            success => {
+                this.answered = success.success;
+            }
+        );
     }
 }
