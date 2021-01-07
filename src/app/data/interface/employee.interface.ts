@@ -6,6 +6,7 @@ export interface EmployeeInterface {
     fullName: string;
     position: PositionInterface;
     group: SimpleGroupInterface;
+    isAdmin: boolean | number;
 }
 
 export interface SimpleGroupInterface {

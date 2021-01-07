@@ -1,0 +1,8 @@
+<div *ngFor="let emp of employees">
+
+    <app-employee-card
+            [employee]="emp"
+            [action]="emp.isAdmin ? 'Удалить из администраторов' : 'Назначить администратором'"
+            (actionEvent)="setAdmin($event)"
+    ></app-employee-card>
+</div>

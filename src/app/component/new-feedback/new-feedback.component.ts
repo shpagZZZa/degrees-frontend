@@ -35,8 +35,9 @@ export class NewFeedbackComponent {
             }
         );
         this.auth.getUser().subscribe(
-            user => {
-                this.user = user;
+            res => {
+                // @ts-ignore
+                this.user = res;
             }
         );
     }
@@ -45,7 +46,7 @@ export class NewFeedbackComponent {
         this.quizService.leaveFeedback(this.quiz.id, {
             answer: this.answer,
             comment: this.comment,
-            author: this.user
+            authorId: this.user.id
         }).subscribe(
             feedback => {
                 this.router.navigate(['/quiz/' + this.quiz.id]);

@@ -21,7 +21,7 @@
 
         <div *ngIf="quiz.feedbacks && quiz.feedbacks.length">
             <h2>Ответы</h2>
-            <div *ngFor="let feedback of quiz.feedbacks">
+            <div *ngFor="let feedback of quiz.feedbacks.reverse()">
                 <hr>
                 <h4>Оценка - {{ feedback.answer.title }}</h4>
                 <span *ngIf="feedback.comment">Комментарий - {{feedback.comment}}</span>

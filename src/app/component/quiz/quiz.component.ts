@@ -13,7 +13,7 @@ import { AuthService } from '../../service/auth.service';
 })
 export class QuizComponent {
 
-    user!: EmployeeInterface;
+    user!: EmployeeInterface | null;
     loading = true;
     quiz!: QuizInterface;
     answered = true;
@@ -31,8 +31,9 @@ export class QuizComponent {
             }
         );
         auth.getUser().subscribe(
-            user => {
-                this.user = user;
+            res => {
+                // @ts-ignore
+                this.user = res;
             }
         );
         quizService.isAnswered(id).subscribe(

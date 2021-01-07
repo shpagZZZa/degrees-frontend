@@ -8,7 +8,7 @@
 <div *ngIf="canEdit">
     <div *ngFor="let answer of answers">
         <input type="text" *ngIf="canEdit" [value]="answer.title" [(ngModel)]="answer.title">
-        <span (click)="delete.emit($event)" *ngIf="answers.length > 2 && answer === answers[answers.length - 1]">сделай крестик cправа я не ебу</span>
+        <span class="btn btn-close" (click)="delete.emit($event)" *ngIf="answers.length > 2 && answer === answers[answers.length - 1]">сделай справа)</span>
     </div>
     <button (click)="addAnswer()">Добавить ответ</button>
 </div>

@@ -3,6 +3,7 @@ import { EmployeeInterface } from '../data/interface/employee.interface';
 import { BackendService } from './backend.service';
 import { Observable } from 'rxjs';
 import { QuizInterface } from '../data/interface/quiz.interface';
+import { environment } from '../../environments/environment';
 
 export interface NewEmployeeInterface {
     fullName: string;
@@ -17,6 +18,10 @@ export class EmployeeService extends BackendService {
 
     public getEmployee(id: number): Observable<EmployeeInterface> {
         return this.http.get<EmployeeInterface>(this.backendUrl + '/api/employee/' + id);
+    }
+
+    public setAdmin(id: number): Observable<EmployeeInterface> {
+        return this.http.put<EmployeeInterface>(`${environment.apiUrl}/employee/${id}`, []);
     }
 
     public getQuizzes(id: number): Observable<QuizInterface[]> {

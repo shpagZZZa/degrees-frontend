@@ -25,5 +25,5 @@ export interface AnswerInterface {
 export interface NewFeedbackInterface {
     answer: AnswerInterface;
     comment: string;
-    author: EmployeeInterface;
+    authorId: number;
 }

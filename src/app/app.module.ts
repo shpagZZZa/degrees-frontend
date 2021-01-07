@@ -23,6 +23,9 @@ import { NewFeedbackComponent } from './component/new-feedback/new-feedback.comp
 import { EmployeeComponent } from './component/employee/employee.component';
 import { ModalComponent } from './component/modal/modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from './component/login/login.component';
+import { PositionCardComponent } from './component/position-card/position-card.component';
+import { AdminComponent } from './component/admin/admin.component';
 
 @NgModule({
     declarations: [
@@ -41,7 +44,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         LoadingComponent,
         NewFeedbackComponent,
         EmployeeComponent,
-        ModalComponent
+        ModalComponent,
+        LoginComponent,
+        PositionCardComponent,
+        AdminComponent
     ],
     imports: [
         BrowserModule,

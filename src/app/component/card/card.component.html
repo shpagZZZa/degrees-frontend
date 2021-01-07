@@ -2,4 +2,8 @@
     <a [routerLink]="link" *ngIf="link">{{title}}</a>
     <span *ngIf="!link">{{title}}</span>
     {{subtitle}}
+
+    <div *ngIf="actionId">
+        <button class="btn btn-danger" (click)="action.emit(actionId)">{{actionButton}}</button>
+    </div>
 </div>

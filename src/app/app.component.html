@@ -7,7 +7,15 @@
             <a routerLink="/company">Компания</a>
             <a routerLink="/statistics">Статистика</a>
             <a routerLink="/new-quiz">Новый опрос</a>
+            <a routerLink="/admin" *ngIf="user && user.isAdmin">Админка</a>
         </span>
+
+        <div *ngIf="auth.isCookieSet()">
+            <span *ngIf="user">{{user.fullName}}</span>
+            <button class="btn btn-dark" (click)="auth.logout()">Выйти</button>
+        </div>
+
+        <button *ngIf="!auth.isCookieSet()" class="btn">Войти</button>
     </div>
     <router-outlet></router-outlet>
 </body>

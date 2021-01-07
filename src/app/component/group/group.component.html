@@ -5,12 +5,25 @@
 <div *ngIf="!loading">
     <h1>Группа "{{group.title}}"</h1>
 
-    <h3 [routerLink]="'/employee/' + group.head.id">Глава команды - {{group.head.fullName}}</h3>
+    <h3 [routerLink]="'/employee/' + group.head.id" *ngIf="group.head">Глава команды - {{group.head.fullName}}</h3>
     <div id="group">
-        <p>Члены команды:</p>
-        <app-employee-card *ngFor="let employee of group.employees"
-                           style="background: #44ADD7;color: white" [employee]="employee"
-        ></app-employee-card>
+        <p>Члены команды - {{group.employees.length}}</p>
+
+        <div *ngIf="isAdmin">
+            <app-employee-card *ngFor="let employee of group.employees"
+                               style="background: #44ADD7;color: white"
+                               [employee]="employee"
+                               [action]="'Назначить главой команды'"
+                               (actionEvent)="makeHead($event)"
+            ></app-employee-card>
+        </div>
+
+        <div *ngIf="!isAdmin">
+            <app-employee-card *ngFor="let employee of group.employees"
+                               style="background: #44ADD7;color: white"
+                               [employee]="employee"
+            ></app-employee-card>
+        </div>
     </div>
 
     <ng-template #content let-modal>

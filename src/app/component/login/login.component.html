@@ -1,0 +1,17 @@
+<div>
+    <form [formGroup]="form">
+        <div class="form-group">
+            <label for="accessCode">Код доступа</label>
+            <input type="text" id="accessCode" class="form-control"
+                   formControlName="accessCode"
+                   autocomplete="off"
+            >
+        </div>
+
+        <button class="btn-primary btn" (click)="submit()"
+                [disabled]="form.controls['accessCode'].invalid"
+        >Войти</button>
+
+        <span class="text-danger" *ngIf="error">Неверный код доступа</span>
+    </form>
+</div>

@@ -11,6 +11,8 @@
         <hr>
 
         <h4>Команды</h4>
+        <button class="btn btn-lg btn-outline-primary" (click)="openModal(groupContent)" *ngIf="user.isAdmin">Добавить команду</button>
+
 
         <div *ngFor="let group of company.groups">
             <app-group-card [group]="group"></app-group-card>
@@ -27,5 +29,67 @@
                            [quiz]="quiz"
             ></app-quiz-card>
         </div>
+
+        <h4>Должности - {{positions.length}} шт.</h4>
+        <button class="btn btn-lg btn-outline-primary" (click)="openModal(posContent)" *ngIf="user.isAdmin">Добавить должность</button>
+        <div>
+            <app-position-card *ngFor="let pos of positions"
+                               [position]="pos"
+            ></app-position-card>
+        </div>
     </div>
+
+<!--    GROUP-->
+    <ng-template #groupContent let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">Новая группа</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="groupForm">
+                <div class="form-group">
+                    <label for="titleGr">Название группы</label>
+                    <div class="input-group">
+                        <input id="titleGr" class="form-control" name="dp" type="text"
+                               formControlName="title"
+                        >
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="submitGroup()"
+            >Сохранить</button>
+        </div>
+    </ng-template>
+<!--    GROUP-->
+
+<!--    POSITION -->
+    <ng-template #posContent let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">Новая должность</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="positionForm">
+                <div class="form-group">
+                    <label for="titlePos">Название должности</label>
+                    <div class="input-group">
+                        <input id="titlePos" class="form-control" name="dp" type="text"
+                               formControlName="title"
+                        >
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="submitPosition()"
+            >Сохранить</button>
+        </div>
+    </ng-template>
+<!--    POSITION -->
 </div>

@@ -1,4 +1,12 @@
-<div id="gey">
-    <a [routerLink]="'/employee/' + employee.id">{{employee.fullName}}</a> -
-    <a>{{employee.position.title}}</a>
-</div>
+<app-card *ngIf="!action"
+          [title]="employee.fullName"
+          [subtitle]="getSubtitle()"
+          [link]="'/employee/' + employee.id"
+></app-card>
+
+<app-card *ngIf="action" [actionId]="employee.id" [actionButton]="action" (action)="actionEvent.emit(employee)"
+          [title]="employee.fullName"
+          [subtitle]="getSubtitle()"
+          [link]="'/employee/' + employee.id"
+></app-card>
+
