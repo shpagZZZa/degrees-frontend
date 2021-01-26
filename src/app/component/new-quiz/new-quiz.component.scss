@@ -2,9 +2,8 @@
 #titled{
     max-width:1140px;
     margin: 0 auto;
-    height: 100vh;
-    padding: 2rem;
-    display: block;
+    min-height: 700px;
+    padding: 2em;
     background-color: #44ADD7;
     text-align: center;
     color: black;
@@ -36,7 +35,7 @@
     #answer_block{
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(3,1fr);
+        grid-template-columns: repeat(4,1fr);
         font-size: 20px;
         padding: 20px;
         transition: 0.15s all;

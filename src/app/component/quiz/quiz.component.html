@@ -18,7 +18,7 @@
         <div *ngIf="!quiz.feedbacks || !quiz.feedbacks.length">
             Никто не оставил ответов...
         </div>
-
+<div id="container">
         <div *ngIf="quiz.feedbacks && quiz.feedbacks.length">
             <h2>Ответы</h2>
             <div *ngFor="let feedback of quiz.feedbacks.reverse()">
@@ -31,6 +31,7 @@
                 </div>
             </div>
         </div>
+</div>
 
     </div>
 </div>

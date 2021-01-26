@@ -12,13 +12,13 @@ import { LoginComponent } from './component/login/login.component';
 import { AdminComponent } from './component/admin/admin.component';
 
 const routes: Routes = [
-    { path: 'group/:id', component: GroupComponent, canActivate: [AuthGuard] },
-    { path: 'quiz/:id', component: QuizComponent, canActivate: [AuthGuard] },
-    { path: 'company', component: CompanyComponent, canActivate: [AuthGuard] },
-    { path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuard] },
-    { path: 'new-quiz', component: NewQuizComponent, canActivate: [AuthGuard] },
-    { path: 'quiz/:id/feedback', component: NewFeedbackComponent, canActivate: [AuthGuard] },
-    { path: 'employee/:id', component: EmployeeComponent, canActivate: [AuthGuard] },
+    { path: 'group/:id', component: GroupComponent,},
+    { path: 'quiz/:id', component: QuizComponent, },
+    { path: 'company', component: CompanyComponent, },
+    { path: 'statistics', component: StatisticsComponent, },
+    { path: 'new-quiz', component: NewQuizComponent, },
+    { path: 'quiz/:id/feedback', component: NewFeedbackComponent,},
+    { path: 'employee/:id', component: EmployeeComponent,  },
     { path: 'login', component: LoginComponent },
     { path: 'admin', component: AdminComponent }
 ];
